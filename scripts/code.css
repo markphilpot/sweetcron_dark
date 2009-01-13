@@ -1,0 +1,82 @@
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+
+*/
+
+pre code[class]:after {
+  content: 'Language: ' attr(class);
+  display: block; text-align: right;
+  color: #CCC; background: white;
+}
+
+pre code {
+  display: block;
+  padding: 8px 10px 5px 10px;
+  border: 2px solid #EEE;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.subst, .title {
+    font-weight: normal;
+    color: #000;
+}
+
+.comment, .template_comment, .javadoc, .diff .header {
+    color: #808080;
+    font-style: italic;
+}
+
+.annotation, .decorator, .preprocessor, .doctype, .pi, .chunk, .shebang {
+    color: #808000;
+}
+
+.tag, .pi {
+    background: #efefef;
+}
+
+.tag .title, .id, .attr_selector, .literal, .keyword, .hexcolor,.css .function, .ini .title {
+    font-weight: bold;
+    color: #000080;
+}
+
+.attribute, .rules .keyword, .number, .regexp {
+    font-weight: bold;
+    color: #0000ff;
+}
+
+.number, .regexp {
+    font-weight: normal;
+}
+
+.string, .value, .filter .argument, .css .function .params {
+    color: #008000;
+    font-weight: bold;
+}
+
+.symbol, .char {
+    color: #000;
+    background: #d0eded;
+    font-style: italic;
+}
+
+.phpdoc, .javadoctag {
+    text-decoration: underline;
+}
+
+.variable {
+    color: #660e7a;
+}
+
+.addition {
+    background: #baeeba;
+}
+
+.deletion {
+    background: #ffc8bd;
+}
+
+.diff .change {
+    background: #bccff9;
+}
