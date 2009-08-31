@@ -7,6 +7,7 @@
             	<div class="item_inner">
             	
             	<!-- domain-specific boxes -->
+				<?php $skipped = false; ?>
             	
             	<?php if ($item->get_feed_domain() == 'opensourcefood.com'): ?>
 	            <div class="osf_fold"><a href="<?php echo $item->get_permalink()?>/<?php echo $item->get_name()?>"></a></div>
@@ -41,13 +42,16 @@
 					<p><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title(); ?></a></p>
 				</div>
 				
-				<?php elseif($item->get_feed_domain() == 'friendfeed.com' &&
-							!preg_match("/twitter/", $item->get_original_permalink()) && // Filter out duplicates from the FF stream (a pain, I know)
-							!preg_match("/facebook/", $item->get_original_permalink()) ): ?>
+				<?php elseif($item->get_feed_domain() == 'friendfeed.com'): 
+							  if(preg_match("/twitter/", $item->get_original_permalink()) ||
+								 preg_match("/facebook/", $item->get_original_permalink()) ) { $skipped = true; } else { ?>
+
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
 					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
 				</div>
+
+				<? } // end skip check ?>
 
 				<?php elseif($item->get_feed_domain() == 'facebook.com'): ?>
 				<div class="inner_container">
@@ -108,7 +112,7 @@
             	<p class="blog_cite">A blog post</p>
             	</div>
 
-            	<?php else: //generic container with instructions ?>
+            	<?php elseif(!$skipped): //generic container with instructions ?>
             	<div class="inner_container instructions">
             	<p><strong>The Dark theme does not have a custom style for this domain :: <?php echo $item->get_feed_domain(); ?>.</strong></p>  
             	</div>
