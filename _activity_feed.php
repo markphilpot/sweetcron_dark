@@ -1,13 +1,27 @@
+<?php
+
+function process_item($item)
+{
+  if($item->get_feed_domain() == 'friendfeed.com' &&
+	 !preg_match("/twitter/", $item->get_original_permalink()) ||
+	 !preg_match("/facebook/", $item->get_original_permalink()) )
+	return true;
+  else
+	return false;
+}
+
+
+?>
+
 <div id="main_container">		
     <ul id="activity_list">
-        <?php if ($items): $i = 1; foreach ($items as $item): ?>
+        <?php if ($items): $i = 1; foreach ($items as $item): if(process_item($item)): ?>
             <!-- begin conditional content -->
             <li class="item <?php echo $item->get_feed_class()?> <?php if ($i % 4 == 0): ?> last<?php endif; ?>">
             	<p class="site_info" style="background: transparent url(<?php echo $item->get_feed_icon()?>) 0 center no-repeat"><a href="<?php echo $this->config->item('base_url')?>items/site/<?php echo $item->get_feed_domain()?>"><?php echo $item->get_feed_title()?></a></p>
             	<div class="item_inner">
             	
             	<!-- domain-specific boxes -->
-				<?php $skipped = false; ?>
             	
             	<?php if ($item->get_feed_domain() == 'opensourcefood.com'): ?>
 	            <div class="osf_fold"><a href="<?php echo $item->get_permalink()?>/<?php echo $item->get_name()?>"></a></div>
@@ -42,16 +56,11 @@
 					<p><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title(); ?></a></p>
 				</div>
 				
-				<?php elseif($item->get_feed_domain() == 'friendfeed.com'): 
-							  if(preg_match("/twitter/", $item->get_original_permalink()) ||
-								 preg_match("/facebook/", $item->get_original_permalink()) ) { $skipped = true; } else { ?>
-
+				<?php elseif($item->get_feed_domain() == 'friendfeed.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
 					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
 				</div>
-
-				<? } // end skip check ?>
 
 				<?php elseif($item->get_feed_domain() == 'facebook.com'): ?>
 				<div class="inner_container">
@@ -124,7 +133,7 @@
 
             </li>
 
-        <?php $i++; endforeach; endif; ?>
+        <?php $i++; endif; endforeach; endif; ?>
     </ul>
 	<div class="clear"></div>
     <p id="pagination"><?php echo $pages?></p>
