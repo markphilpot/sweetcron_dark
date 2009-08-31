@@ -4,7 +4,9 @@ function process_item($item)
 {
   if($item->get_feed_domain() == 'friendfeed.com' &&
 	 (preg_match("/twitter/", $item->get_original_permalink()) ||
-	  preg_match("/facebook/", $item->get_original_permalink()) )
+	  preg_match("/facebook/", $item->get_original_permalink()) ||
+	  preg_match("/from Facebook/", $item->get_content()) ||
+	  preg_match("/from delicious/", $item->get_content()) )
     )
 	return false;
   else
