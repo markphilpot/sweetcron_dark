@@ -3,11 +3,12 @@
 function process_item($item)
 {
   if($item->get_feed_domain() == 'friendfeed.com' &&
-	 !preg_match("/twitter/", $item->get_original_permalink()) ||
-	 !preg_match("/facebook/", $item->get_original_permalink()) )
-	return true;
-  else
+	 (preg_match("/twitter/", $item->get_original_permalink()) ||
+	  preg_match("/facebook/", $item->get_original_permalink()) )
+    )
 	return false;
+  else
+	return true;
 }
 
 
@@ -16,6 +17,7 @@ function process_item($item)
 <div id="main_container">		
     <ul id="activity_list">
         <?php if ($items): $i = 1; foreach ($items as $item): if(process_item($item)): ?>
+			<?php if($i == 13) { break; } ?>
             <!-- begin conditional content -->
             <li class="item <?php echo $item->get_feed_class()?> <?php if ($i % 4 == 0): ?> last<?php endif; ?>">
             	<p class="site_info" style="background: transparent url(<?php echo $item->get_feed_icon()?>) 0 center no-repeat"><a href="<?php echo $this->config->item('base_url')?>items/site/<?php echo $item->get_feed_domain()?>"><?php echo $item->get_feed_title()?></a></p>
