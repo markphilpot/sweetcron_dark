@@ -59,7 +59,7 @@
 								<img src="<?php echo $this->config->item('theme_folder')?>images/services/twitter.gif" alt=""/> Twitter<br/>
 							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/blog.png" alt=""/> MC Studios Blog<br/>
 							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/googlereader.png" alt=""/> Google Reader Shared Items<br/>
-							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/librarything.png" alt=""/> LibraryThing<br/>
+							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/goodreads.png" alt=""/> Goodreads<br/>
 							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/pandora.png" alt=""/> Pandora<br/>
 							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/youtube.png" alt=""/> Youtube (Uploads/Favorites)<br/>
 							    <img src="<?php echo $this->config->item('theme_folder')?>images/services/friendfeed.png" alt=""/> FriendFeed (Posts/Comments)<br/>
@@ -94,8 +94,8 @@
 						echo "<img src='".$this->config->item('theme_folder')."images/services/blog.png' alt='Blog'/>";
 					elseif($feed->feed_domain == 'google.com')
 						echo "<img src='".$this->config->item('theme_folder')."images/services/googlereader.png' alt='Google Reader'/>";
-					elseif($feed->feed_domain == 'librarything.com')
-						echo "<img src='".$this->config->item('theme_folder')."images/services/librarything.png' alt='LibraryThing'/>";
+					elseif($feed->feed_domain == 'goodreads.com')
+						echo "<img src='http://www.goodreads.com/favicon.ico' alt='Goodreads'/>";
 					elseif($feed->feed_domain == 'pandora.com')
 						echo "<img src='".$this->config->item('theme_folder')."images/services/pandora.png' alt='Pandora'/>";
 					elseif($feed->feed_domain == 'youtube.com')
@@ -116,6 +116,8 @@
 						echo "<img src='".$this->config->item('theme_folder')."images/services/delicious.png' alt='Delicious'/>";
 					elseif($feed->feed_domain == 'flickr.com')
 						echo "<img src='".$this->config->item('theme_folder')."images/services/flickr.png' alt='Delicious'/>";
+					elseif($feed->feed_domain == 'facebook.com')
+						echo "<img src='http://www.facebook.com/favicon.ico' alt='Facebook'/>";
 					elseif($feed->feed_domain == 'brightkite.com')
 						echo "<img src='".$this->config->item('theme_folder')."images/services/brightkite.png' alt='Brightkite'/>";
 					else

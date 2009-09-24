@@ -6,6 +6,7 @@ function process_item($item)
 	 (preg_match("/twitter/", $item->get_original_permalink()) ||
 	  preg_match("/facebook/", $item->get_original_permalink()) ||
 	  preg_match("/from Facebook/", $item->get_content()) ||
+          preg_match('/from Goodreads/', $item->get_content()) ||
 	  preg_match("/from delicious/", $item->get_content()) )
     )
 	return false;
@@ -84,7 +85,7 @@ function process_item($item)
 					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
 				</div>
 				
-				<?php elseif($item->get_feed_domain() == 'librarything.com'): ?>
+				<?php elseif($item->get_feed_domain() == 'goodreads.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
 					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
