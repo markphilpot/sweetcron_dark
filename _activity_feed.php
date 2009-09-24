@@ -31,7 +31,7 @@ function process_item($item)
             	<?php if ($item->get_feed_domain() == 'opensourcefood.com'): ?>
 	            <div class="osf_fold"><a href="<?php echo $item->get_permalink()?>/<?php echo $item->get_name()?>"></a></div>
             	<img src="<?php echo $item->get_image()?>" alt="" />
-            	<p class="osf_recipe"><a href="<?php echo $item->get_permalink()?>/<?php echo $item->get_name()?>"><?php echo $item->get_title()?></a><span><?php echo word_limiter(strip_tags($item->get_content()), 28)?></span></p>
+            	<p class="osf_recipe"><a href="<?php echo $item->get_permalink()?>/<?php echo $item->get_name()?>"><?php echo $item->get_title()?></a><span><?php echo html_entity_decode($item->get_content())?></span></p>
             	
             	<?php elseif ($item->get_feed_domain() == 'twitter.com'): ?>
             	<p class="twitter_user"><a href="<?php echo $this->config->item('base_url')?>items/site/<?php echo $item->get_feed_domain()?>"><img src="http://s3.amazonaws.com/twitter_production/profile_images/56958143/profile_bigger.jpg" alt="" /></a></p>
@@ -44,12 +44,12 @@ function process_item($item)
             	<?php elseif ($item->get_feed_domain() == 'youtube.com'): ?>
             	<?php echo $item->get_video()?>
             	<p class="youtube_title"><a href="<?php echo $item->get_original_permalink()?>/<?php echo $item->get_name()?>"><?php echo $item->get_title()?></a></p>
-            	<p><?php echo word_limiter(strip_tags($item->get_content()), 8)?></p>
+            	<p><?php echo word_limiter(html_entity_decode($item->get_content()), 8)?></p>
             	
             	<?php elseif ($item->get_feed_domain() == 'digg.com'): ?>
             	<div class="inner_container">
             	<p class="digg_title"><a href="<?php echo $item->get_original_permalink()?>/<?php echo $item->get_name()?>"><?php echo $item->get_title()?></a></p>
-            	<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+            	<p><?php echo html_entity_decode($item->get_content())?></p>
             	</div>
             	           	
             	<?php elseif ($item->get_feed_domain() == 'flickr.com'): ?>
@@ -64,50 +64,49 @@ function process_item($item)
 				<?php elseif($item->get_feed_domain() == 'friendfeed.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 
 				<?php elseif($item->get_feed_domain() == 'facebook.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'blog.mcstudios.net'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'google.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'goodreads.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<?php echo html_entity_decode($item->get_content())?>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'pandora.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'dopplr.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo $item->get_title()?></a></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'rss.netflix.com'): ?>
 				<div class="inner_container">
 					<p class="blog_title"><a href="<?php echo $item->get_original_permalink()?>"><?php echo substr($item->get_title(), 5); ?></a><br/><img src="<?php echo $item->get_image()?>" alt=""/></p>
-					<p><?php echo word_limiter(strip_tags($item->get_content()), 38)?></p>
-					<p><?php print_r($item); ?></p>
+					<p><?php echo html_entity_decode($item->get_content())?></p>
 				</div>
 				
 				<?php elseif($item->get_feed_domain() == 'brightkite.com'): ?>
